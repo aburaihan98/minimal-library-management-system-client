@@ -1,69 +1,163 @@
-# React + TypeScript + Vite
+# Minimal Library Management System 📚
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and minimal library management system built with **React**, **Redux Toolkit Query (RTK Query)**, **TypeScript**, **Node.js**, **Express**, and **MongoDB**.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 📝 Project Overview
 
-## Expanding the ESLint configuration
+This project provides a minimal yet functional library management system that allows users to:
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- View a list of books
+- Add, edit, and delete books
+- Borrow books with quantity and due date
+- View a summary of all borrowed books
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+No authentication or payment integration is included to keep it lightweight and focused on core features.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Features
+
+- **Public routes** accessible without login or authentication.
+- **Book Management**: CRUD operations on books with validations.
+- **Borrowing system**: Borrow books with quantity checks and due dates.
+- **Borrow Summary**: Aggregated view of borrowed books and total quantities.
+- Responsive UI built with **Tailwind CSS**.
+- State management and API integration using **Redux Toolkit Query**.
+- Backend powered by **Node.js**, **Express.js**, and **MongoDB**.
+- TypeScript used throughout frontend and backend for type safety.
+
+---
+
+## 🛠️ Technology Stack
+
+| Layer      | Technology                                           |
+| ---------- | ---------------------------------------------------- |
+| Frontend   | React, TypeScript, Redux Toolkit Query, Tailwind CSS |
+| Backend    | Node.js, Express.js                                  |
+| Database   | MongoDB, Mongoose                                    |
+| State Mgmt | Redux Toolkit Query                                  |
+| Styling    | Tailwind CSS                                         |
+
+---
+
+## 📂 Project Structure
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+/backend
+├── controllers/
+├── models/
+├── routes/
+├── app.ts
+└── server.ts
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+/frontend
+├── src/
+├── components/
+├── features/
+├── pages/
+├── app.tsx
+└── store.ts
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+
+---
+
+## 🔧 Installation & Setup
+
+### Backend
+
+1. Navigate to backend folder:
+   ```bash
+   cd backend
+   ```
+
+````
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Setup `.env` file with your MongoDB connection string:
+
+   ```
+   MONGO_URI=your_mongodb_connection_string
+   PORT=5000
+   ```
+
+4. Start the backend server:
+
+   ```bash
+   npm run dev
+   ```
+
+### Frontend
+
+1. Navigate to frontend folder:
+
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Setup `.env` file if needed (e.g. API base URL).
+4. Start the frontend development server:
+
+   ```bash
+   npm start
+   ```
+
+---
+
+## 📄 API Endpoints Overview
+
+| Endpoint               | Method | Description                         |
+| ---------------------- | ------ | ----------------------------------- |
+| `/api/books`           | GET    | Get all books (supports pagination) |
+| `/api/books`           | POST   | Create a new book                   |
+| `/api/books/:id`       | GET    | Get single book details             |
+| `/api/books/:id`       | PUT    | Update a book                       |
+| `/api/books/:id`       | DELETE | Delete a book                       |
+| `/api/borrows`         | POST   | Borrow a book                       |
+| `/api/borrows/summary` | GET    | Get aggregated borrow summary       |
+
+---
+
+## 📱 UI Routes
+
+| Route             | Description                 |
+| ----------------- | --------------------------- |
+| `/books`          | List all books with actions |
+| `/create-book`    | Add a new book              |
+| `/books/:id`      | Book details                |
+| `/edit-book/:id`  | Edit book                   |
+| `/borrow/:bookId` | Borrow a book               |
+| `/borrow-summary` | Borrow summary page         |
+
+---
+
+## 🎯 How to Use
+
+1. Browse the book list at `/books`.
+2. Add new books via `/create-book`.
+3. Edit or delete existing books directly from the list.
+4. Borrow a book (if copies available) via the borrow button.
+5. View aggregated borrow data in `/borrow-summary`.
+
+---
+
+## 🎉 Bonus Features (Implemented)
+
+- Optimistic UI updates with RTK Query.
+- Toast notifications for success/error messages.
+- Fully responsive layout using Tailwind CSS.
+- Type-safe forms using TypeScript.

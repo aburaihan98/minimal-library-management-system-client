@@ -7,6 +7,7 @@ import EditBook from "../pages/EditBook";
 import Borrow from "../pages/Borrow";
 import BorrowSummary from "../pages/BorrowSummary";
 import BookDetails from "../pages/BookDetails";
+import BookList from "../pages/Books/BookList";
 
 const router = createBrowserRouter([
   {
@@ -15,8 +16,13 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
+        path: "/",
         element: <Home />,
+      },
+      {
+        index: true,
+        path: "/books",
+        element: <BookList />,
       },
       {
         path: "/books/:id",

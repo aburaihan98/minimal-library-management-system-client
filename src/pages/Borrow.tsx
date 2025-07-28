@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useNavigate, data } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import {
   useCreateBorrowMutation,
@@ -43,8 +43,6 @@ export default function Borrow() {
 
     try {
       await borrowBook({ bookId: book?._id, quantity, dueDate }).unwrap();
-      console.log({ bookId, quantity, dueDate });
-
       toast.success("Book borrowed successfully!");
       navigate("/borrow-summary");
     } catch {
@@ -53,19 +51,24 @@ export default function Borrow() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-4">Borrow Book: {book.title}</h1>
+    <div className="max-w-lg mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+      <h1 className="text-2xl font-bold mb-6 text-center text-blue-700">
+        Borrow Book: <span className="text-black">{book.title}</span>
+      </h1>
 
-      <form onSubmit={onSubmit} className="space-y-4">
+      <form onSubmit={onSubmit} className="space-y-5">
+        {/* Quantity Input */}
         <div>
-          <label className="block mb-1 font-semibold">Quantity</label>
+          <label className="block mb-1 font-semibold text-gray-700">
+            Quantity
+          </label>
           <input
             type="number"
             value={quantity}
             min={1}
             max={book.copies}
             onChange={(e) => setQuantity(Number(e.target.value))}
-            className="w-full border rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             placeholder={`Max: ${book.copies}`}
           />
           {errors.quantity && (
@@ -73,26 +76,32 @@ export default function Borrow() {
           )}
         </div>
 
+        {/* Due Date Input */}
         <div>
-          <label className="block mb-1 font-semibold">Due Date</label>
+          <label className="block mb-1 font-semibold text-gray-700">
+            Due Date
+          </label>
           <input
             type="date"
             value={dueDate}
             onChange={(e) => setDueDate(e.target.value)}
-            className="w-full border rounded px-3 py-2"
+            className="w-full border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
           {errors.dueDate && (
             <p className="text-red-600 text-sm mt-1">{errors.dueDate}</p>
           )}
         </div>
 
-        <button
-          type="submit"
-          disabled={isBorrowing}
-          className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-50 cursor-pointer"
-        >
-          {isBorrowing ? "Borrowing..." : "Borrow"}
-        </button>
+        {/* Submit Button */}
+        <div className="text-center">
+          <button
+            type="submit"
+            disabled={isBorrowing}
+            className="bg-blue-600 hover:bg-blue-700 cursor-pointer transition-colors duration-300 text-white px-6 py-2 rounded-md disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {isBorrowing ? "Borrowing..." : "Borrow"}
+          </button>
+        </div>
       </form>
     </div>
   );

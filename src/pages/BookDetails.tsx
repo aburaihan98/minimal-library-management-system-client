@@ -17,38 +17,48 @@ const BookDetails = () => {
     );
 
   return (
-    <div className="max-w-2xl mx-auto mt-10 p-6 bg-white rounded shadow">
-      <h1 className="text-2xl font-bold mb-4">{book.title}</h1>
-      <p>
-        <strong>Author:</strong> {book.author}
-      </p>
-      <p>
-        <strong>Genre:</strong> {book.genre}
-      </p>
-      <p>
-        <strong>ISBN:</strong> {book.isbn}
-      </p>
-      <p>
-        <strong>Copies:</strong> {book.copies}
-      </p>
-      <p>
-        <strong>Available:</strong> {book.available ? "✅ Yes" : "❌ No"}
-      </p>
+    <div className="max-w-2xl mx-auto mt-12 p-8 bg-white rounded-xl shadow-md">
+      <h1 className="text-3xl font-bold mb-6 text-blue-700 text-center">
+        {book.title}
+      </h1>
 
-      <div className="mt-6 flex gap-4">
+      <div className="space-y-3 text-gray-700 text-base">
+        <p>
+          <span className="font-semibold">Author:</span> {book.author}
+        </p>
+        <p>
+          <span className="font-semibold">Genre:</span> {book.genre}
+        </p>
+        <p>
+          <span className="font-semibold">ISBN:</span> {book.isbn}
+        </p>
+        <p>
+          <span className="font-semibold">Copies:</span> {book.copies}
+        </p>
+        <p>
+          <span className="font-semibold">Available:</span>{" "}
+          {book.available ? (
+            <span className="text-green-600 font-semibold">✅ Yes</span>
+          ) : (
+            <span className="text-red-500 font-semibold">❌ No</span>
+          )}
+        </p>
+      </div>
+
+      <div className="mt-8 flex flex-col md:flex-row items-start md:items-center gap-4">
         <Link
           to={`/edit-book/${book._id}`}
-          className="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600"
+          className="bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-md transition-colors duration-200"
         >
-          Edit Book
+          ✏️ Edit Book
         </Link>
         <Link
           to={`/borrow/${book._id}`}
-          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-md transition-colors duration-200"
         >
-          Borrow Book
+          📖 Borrow Book
         </Link>
-        <Link to="/" className="text-gray-500 underline mt-2">
+        <Link to="/" className="text-gray-600 hover:underline mt-2 md:mt-0">
           ← Back to list
         </Link>
       </div>
