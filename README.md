@@ -42,81 +42,11 @@ No authentication or payment integration is included to keep it lightweight and 
 
 ---
 
-## 📂 Project Structure
-
-```
-
-/backend
-├── controllers/
-├── models/
-├── routes/
-├── app.ts
-└── server.ts
-
-/frontend
-├── src/
-├── components/
-├── features/
-├── pages/
-├── app.tsx
-└── store.ts
-
-```
-
 ---
 
 ## 🔧 Installation & Setup
 
 ### Backend
-
-1. Navigate to backend folder:
-   ```bash
-   cd backend
-   ```
-
-````
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Setup `.env` file with your MongoDB connection string:
-
-   ```
-   MONGO_URI=your_mongodb_connection_string
-   PORT=5000
-   ```
-
-4. Start the backend server:
-
-   ```bash
-   npm run dev
-   ```
-
-### Frontend
-
-1. Navigate to frontend folder:
-
-   ```bash
-   cd frontend
-   ```
-
-2. Install dependencies:
-
-   ```bash
-   npm install
-   ```
-
-3. Setup `.env` file if needed (e.g. API base URL).
-4. Start the frontend development server:
-
-   ```bash
-   npm start
-   ```
-
----
 
 ## 📄 API Endpoints Overview
 
